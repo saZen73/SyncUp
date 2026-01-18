@@ -130,6 +130,9 @@ async function createSamplePastMeetings() {
         title: "Weekly Team Standup - Sprint Review",
         description: "Regular team standup to review completed work and plan upcoming tasks",
         daysAgo: 2,
+        startHour: 10,  // 10:00 AM
+        startMinute: 0,
+        durationMinutes: 30,
         transcript: sampleTranscripts[0],
         summary: sampleSummaries[0],
         actionItems: sampleActionItems[0]
@@ -138,6 +141,9 @@ async function createSamplePastMeetings() {
         title: "Q4 Product Roadmap Planning",
         description: "Strategic planning session for Q4 product development priorities",
         daysAgo: 7,
+        startHour: 14,  // 2:00 PM
+        startMinute: 30,
+        durationMinutes: 60,
         transcript: sampleTranscripts[1],
         summary: sampleSummaries[1],
         actionItems: sampleActionItems[1]
@@ -146,6 +152,9 @@ async function createSamplePastMeetings() {
         title: "Monthly Team Retrospective",
         description: "Monthly review of team performance, achievements, and improvement areas",
         daysAgo: 14,
+        startHour: 11,  // 11:00 AM
+        startMinute: 15,
+        durationMinutes: 45,
         transcript: sampleTranscripts[2],
         summary: sampleSummaries[2],
         actionItems: sampleActionItems[2]
@@ -155,9 +164,12 @@ async function createSamplePastMeetings() {
     for (let i = 0; i < meetingsData.length; i++) {
       const meetingData = meetingsData[i];
 
-      // Calculate past meeting times (1-2 hours duration, various days ago)
-      const meetingStart = new Date(now.getTime() - (meetingData.daysAgo * 24 * 60 * 60 * 1000));
-      const meetingEnd = new Date(meetingStart.getTime() + (90 * 60 * 1000)); // 90 minutes
+      // Calculate past meeting times with specific time of day
+      const meetingStart = new Date(now);
+      meetingStart.setDate(now.getDate() - meetingData.daysAgo);
+      meetingStart.setHours(meetingData.startHour, meetingData.startMinute, 0, 0);
+      
+      const meetingEnd = new Date(meetingStart.getTime() + (meetingData.durationMinutes * 60 * 1000));
 
       const meeting = await prisma.meeting.create({
         data: {

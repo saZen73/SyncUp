@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
 }
 
 model User {
@@ -14,7 +14,7 @@ model User {
   name     String?
   meetings Meeting[]
 
-  botName     String? @default("Meeting Bot")
+  botName     String? @default("SyncUp Bot")
   botImageUrl String?
 
   googleAccessToken  String?

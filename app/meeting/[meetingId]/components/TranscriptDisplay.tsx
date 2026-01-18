@@ -7,9 +7,11 @@ interface TranscriptWord {
 }
 
 interface TranscriptSegment {
-  words: TranscriptWord[];
-  offset: number;
   speaker: string;
+  text?: string;
+  timestamp?: string;
+  words?: TranscriptWord[];
+  offset?: number;
 }
 
 interface TranscriptDisplayProps {
@@ -27,6 +29,12 @@ export default function TranscriptDisplay({
   };
 
   const getSpeakerSegmentTime = (segment: TranscriptSegment) => {
+    // If timestamp is provided as a string (e.g., "00:00:15"), use it directly
+    if (segment.timestamp) {
+      return segment.timestamp;
+    }
+    
+    // Otherwise, calculate from offset and words (for legacy format)
     const startTime = segment.offset || 0;
     const endTime =
       segment.words && segment.words.length > 0
@@ -37,8 +45,14 @@ export default function TranscriptDisplay({
   };
 
   const getSegmentText = (segment: TranscriptSegment) => {
+    // If text is provided directly, use it
+    if (segment.text) {
+      return segment.text;
+    }
+    
+    // Otherwise, construct from words array (for legacy format)
     if (!segment.words || segment.words.length === 0) {
-      return segment.text || '';
+      return '';
     }
     return segment.words.map((word) => word.word).join(" ");
   };

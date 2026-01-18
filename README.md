@@ -1,8 +1,8 @@
-# 🤖 Meeting Bot - AI-Powered Meeting Assistant
+# 🤖 SyncUp - AI-Powered Meeting Assistant
 
-**Meeting Bot** is an intelligent meeting assistant that automatically joins your meetings, records audio, generates transcripts, creates summaries, extracts action items, and enables AI-powered chat with your meeting history using RAG (Retrieval Augmented Generation).
+**SyncUp** is an intelligent meeting assistant that automatically joins your meetings, records audio, generates transcripts, creates summaries, extracts action items, and enables AI-powered chat with your meeting history using RAG (Retrieval Augmented Generation).
 
-Built with **Next.js**, **Prisma**, **Ollama** (local AI), and **Pinecone** (vector search), Meeting Bot provides a complete meeting management solution with local AI processing for privacy and cost-effectiveness.
+Built with **Next.js**, **Prisma**, **Ollama** (local AI), and **Pinecone** (vector search), SyncUp provides a complete meeting management solution with local AI processing for privacy and cost-effectiveness.
 
 ---
 
@@ -49,8 +49,8 @@ Built with **Next.js**, **Prisma**, **Ollama** (local AI), and **Pinecone** (vec
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/teja-afk/meeting-bot.git
-cd meeting-bot
+git clone https://github.com/saZen73/SyncUp.git
+cd SyncUp
 npm install
 ```
 
@@ -94,7 +94,7 @@ GOOGLE_REDIRECT_URI=http://localhost:3000/api/auth/google/callback
 
 # Vector Search (Pinecone)
 PINECONE_API_KEY=pcsk_your_pinecone_key
-PINECONE_INDEX_NAME=meeting-bot-768
+PINECONE_INDEX_NAME=syncup-768
 
 # Email Service (Resend)
 RESEND_API_KEY=re_your_resend_key
@@ -257,7 +257,8 @@ npx tsx scripts/test-pinecone-connection.ts # Test vector search
 
 ### Pinecone (Vector Search)
 1. **Create account** at [pinecone.io](https://pinecone.io/)
-2. **Create index** named `meeting-bot-768` with:
+1. **Go to** [Pinecone Console](https://app.pinecone.io/)
+2. **Create index** named `syncup-768` with:
    - **Dimensions**: 768
    - **Metric**: Cosine
    - **Pod Type**: p1.x1
